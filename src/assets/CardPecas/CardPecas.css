@@ -1,0 +1,55 @@
+.cardPeca {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    min-width: 0;
+    min-height: 200px;
+    padding: .75rem;
+    border: .5px solid transparent;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    background-color: white;
+    text-align: center;
+    cursor: pointer;
+    transition: transform .2s ease-in-out;
+}
+
+.cardPeca:hover {
+    transform: scale(1.03);
+}
+
+.cardPeca--oferta {
+    cursor: default;
+}
+
+.cardPeca--oferta:hover {
+    transform: none;
+}
+
+.cardPeca__nome {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+.cardPeca__fornecedor {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+.cardPeca__valor {
+    font-weight: bold;
+}
+
+.cardPeca__unitario {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.cardPeca__rodape {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .25rem 1rem;
+    font-size: .9rem;
+}

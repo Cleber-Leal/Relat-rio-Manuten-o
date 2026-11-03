@@ -1,0 +1,65 @@
+.comparar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.comparar__cabecalho {
+    flex: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: .25rem 1.5rem;
+}
+
+.comparar__grade {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    align-content: start;
+    gap: 1.5rem;
+    padding: .25rem .5rem 1rem .25rem;
+}
+
+.comparar__anos {
+    flex: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem;
+}
+
+.comparar__anos-titulo {
+    font-weight: bold;
+}
+
+.comparar__ano {
+    padding: .5rem 1rem;
+    border: .5px solid black;
+    border-radius: 10px;
+    background: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.comparar__ano:hover,
+.comparar__ano--ativo {
+    color: #E3062C;
+    border-color: #E3062C;
+}
+
+.comparar__busca {
+    flex: none;
+}
+
+.comparar__busca-campo {
+    width: 100%;
+    max-width: 480px;
+    padding: .75rem;
+    border: .5px solid black;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}

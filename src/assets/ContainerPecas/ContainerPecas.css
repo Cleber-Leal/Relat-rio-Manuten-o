@@ -1,0 +1,45 @@
+.pecas {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+}
+
+.pecas__cabecalho {
+    flex: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem 1rem;
+}
+
+.pecas__limpar {
+    padding: .35rem .75rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    background: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.pecas__limpar:hover {
+    background-color: #E3062C;
+    border-color: #E3062C;
+    color: white;
+}
+
+.pecas__grade {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    align-content: start;
+    gap: 1rem;
+    padding: .25rem .5rem 1rem .25rem;
+}
+
+.pecas__vazio {
+    grid-column: 1 / -1;
+}

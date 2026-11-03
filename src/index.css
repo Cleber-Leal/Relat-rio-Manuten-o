@@ -1,0 +1,51 @@
+* {
+  list-style: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: #E3062C;
+}
+
+#root {
+  padding: .5rem;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* Cartão branco usado como raiz de cada página (Início, Peças, Unidades).
+   min-height/min-width: 0 deixam o conteúdo rolar por dentro em vez de estourar o container. */
+.pagina {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  overflow: hidden;
+}
+
+.pagina--vazia {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+:focus-visible {
+  outline: 3px solid #111;
+  outline-offset: 2px;
+}

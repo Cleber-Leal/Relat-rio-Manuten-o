@@ -1,0 +1,60 @@
+.menu {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    padding: .75rem;
+    background-color: white;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.menu__busca {
+    flex: none;
+    width: 100%;
+    outline: none;
+    padding: .5rem;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.menu__nav {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.menu__lista {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    padding: .25rem;
+}
+
+.menu__item {
+    width: 100%;
+    min-height: 50px;
+    padding: .5rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    background: none;
+    cursor: pointer;
+    text-align: center;
+    overflow-wrap: anywhere;
+    transition: transform .2s ease-in-out;
+}
+
+.menu__item:hover {
+    transform: scale(1.03);
+}
+
+.menu__item--ativo {
+    background-color: #E3062C;
+    border-color: #E3062C;
+    color: white;
+}
+
+.menu__vazio {
+    padding: .5rem;
+    text-align: center;
+}
