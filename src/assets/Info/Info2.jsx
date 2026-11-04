@@ -48,11 +48,6 @@ const Prover = ({ children }) => {
         [jsonData, setorSelecionado]
     )
 
-    const fornecedores = useMemo(
-        () => valoresUnicos(selecionado.map((i) => i.Oficina)),
-        [selecionado]
-    )
-
     // anos disponíveis (início do número da OS) na unidade escolhida, do mais recente para o mais antigo
     const anos = useMemo(
         () => valoresUnicos(selecionado.map((i) => anoDaOS(i.OS))).sort((a, b) => b.localeCompare(a)),
@@ -61,13 +56,27 @@ const Prover = ({ children }) => {
     // se a unidade mudar e o ano antigo não existir mais, o filtro deixa de valer
     const anoAtivo = anos.includes(anoSelecionado) ? anoSelecionado : ''
 
+    // fornecedores da unidade que tiveram atendimento no ano escolhido (todos, se nenhum ano estiver escolhido)
+    const fornecedores = useMemo(
+        () => valoresUnicos(
+            selecionado
+                .filter((i) => !anoAtivo || anoDaOS(i.OS) === anoAtivo)
+                .map((i) => i.Oficina)
+        ),
+        [selecionado, anoAtivo]
+    )
+    // se trocar o ano e o fornecedor escolhido não atendeu nele, o filtro de fornecedor deixa de valer
+    const fornecedorAtivo = fornecedores.some((f) => igual(f, fornecedorSelecionado))
+        ? fornecedorSelecionado
+        : ''
+
     // OS (cards) da unidade, filtradas pelo fornecedor e pelo ano quando houver escolhidos
     const dadosFornecedor = useMemo(
         () => selecionado.filter((i) =>
-            (!fornecedorSelecionado || igual(i.Oficina, fornecedorSelecionado)) &&
+            (!fornecedorAtivo || igual(i.Oficina, fornecedorAtivo)) &&
             (!anoAtivo || anoDaOS(i.OS) === anoAtivo)
         ),
-        [selecionado, fornecedorSelecionado, anoAtivo]
+        [selecionado, fornecedorAtivo, anoAtivo]
     )
 
     // Peças exibidas: se há uma OS selecionada, só as peças dela;
@@ -79,10 +88,10 @@ const Prover = ({ children }) => {
         if (!setorSelecionado) return []
         return jsonData2.filter((i) =>
             igual(i.Setor, setorSelecionado) &&
-            (!fornecedorSelecionado || igual(i.Oficina, fornecedorSelecionado)) &&
+            (!fornecedorAtivo || igual(i.Oficina, fornecedorAtivo)) &&
             (!anoAtivo || anoDaOS(i.OS) === anoAtivo)
         )
-    }, [jsonData2, osSelecionada, setorSelecionado, fornecedorSelecionado, anoAtivo])
+    }, [jsonData2, osSelecionada, setorSelecionado, fornecedorAtivo, anoAtivo])
 
     // ---- ações ----
     const carregarPlanilha = (dadosOS, dadosPecas) => {
@@ -125,7 +134,7 @@ const Prover = ({ children }) => {
             jsonData, jsonData2, carregarPlanilha,
             unidades, unidadesVisiveis, busca, setBusca,
             setorSelecionado, selecionado, selecionarUnidade,
-            fornecedores, fornecedorSelecionado, selecionarFornecedor, dadosFornecedor,
+            fornecedores, fornecedorSelecionado: fornecedorAtivo, selecionarFornecedor, dadosFornecedor,
             anos, anoSelecionado: anoAtivo, selecionarAno,
             osSelecionada, alternarOS, limparOS, pecasDaSelecao,
             infoPeca, pecaBusca, selecionarPeca, pesquisarPeca: setPecaBusca,
